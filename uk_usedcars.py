@@ -15,10 +15,25 @@ import seaborn as sns
 import numpy as np
 
 df = pd.read_csv('./cars_dataset.csv')
+df['avgPrice'] = df.groupby('model')['price'].transform('mean')
 df
 
+temp = df['model'].tolist()
+temp1 = []
+
+for char in temp:
+  if char not in temp1:
+    temp1.append(char)
+
+# Keep
 sns.barplot(x = 'Make', y = 'price', data = df)
 
-sns.lmplot(x = 'year', y = 'price', data = df, col = 'Make', hue = 'transmission')
+# Keep
+sns.lmplot(x = 'year', y = 'price', data = df, col = 'Make', hue = 'fuelType', truncate = False, height = 10, col_wrap = 2)
 
-sns.lmplot(x = 'price', y = 'mileage', data = df, col = 'transmission', hue = 'fuelType')
+# Flatter regression lines indicate more stable resale value of the car the older it is, whereas steeper slopes indicate higher loss in value the older the car, separated by fuelType and Make.
+
+# Switch for new plot?
+sns.lmplot(x = 'mileage', y = 'price', data = df, col = 'Make', hue = 'transmission', truncate = False, col_wrap = 2, height = 5, aspect = 0.75)
+
+# The flatter the regression line, the more stable a vehicles value is in reference to the mileage of the vehicle, separated by transmission and Make.
