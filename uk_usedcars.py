@@ -15,25 +15,29 @@ import seaborn as sns
 import numpy as np
 
 df = pd.read_csv('./cars_dataset.csv')
-df['avgPrice'] = df.groupby('model')['price'].transform('mean')
+
+# Create two new columns for average price and average mpg for each model
+df['avgPrice'] = df.groupby('model')['price'].transform('mean').round(2)
+df['avgMpg'] = df.groupby('model')['mpg'].transform('mean').round(1)
 df
 
-temp = df['model'].tolist()
-temp1 = []
+# pairplot of the dataframe, colored by Make
+sns.pairplot(df, hue = 'Make')
 
-for char in temp:
-  if char not in temp1:
-    temp1.append(char)
-
-# Keep
+# barplot representing Make vs price
 sns.barplot(x = 'Make', y = 'price', data = df)
 
-# Keep
-sns.lmplot(x = 'year', y = 'price', data = df, col = 'Make', hue = 'fuelType', truncate = False, height = 10, col_wrap = 2)
+# lmplot of year vs price, separated by Make and colored by transmission type
+sns.lmplot(x = 'year', y = 'price', data = df, col = 'Make', hue = 'transmission', truncate = False, height = 5, col_wrap = 2)
 
-# Flatter regression lines indicate more stable resale value of the car the older it is, whereas steeper slopes indicate higher loss in value the older the car, separated by fuelType and Make.
+# Flatter regression lines indicate more stable resale value of the car the older it is, whereas steeper slopes indicate higher loss in value the older the car.
 
-# Switch for new plot?
-sns.lmplot(x = 'mileage', y = 'price', data = df, col = 'Make', hue = 'transmission', truncate = False, col_wrap = 2, height = 5, aspect = 0.75)
+# lmplot of mileage vs price, separated by Make
+sns.lmplot(x = 'mileage', y = 'price', data = df, col = 'Make', hue = 'Make', truncate = False, col_wrap = 2, height = 5, aspect = 0.75)
 
-# The flatter the regression line, the more stable a vehicles value is in reference to the mileage of the vehicle, separated by transmission and Make.
+# The flatter the regression line, the more value a car will hold despite higher mileage.
+
+# lmplot of avgPrice (of each model) vs avgMpg (of each model)
+sns.lmplot(data = df, x = 'avgPrice', y = 'avgMpg', hue = 'Make', truncate = False)
+
+# Negative regression shows average mpg goes down as the average price goes up.
