@@ -30,4 +30,6 @@ I also looked at avgPrice vs avgMpg.
 
 This data shows that as the price of a model rises, typically the mpg drops. This is helpful for beginning to understand what factors affect price.
 
+## Plans for part 2
+
 My plan is to find a model relating make, model, year, mileage, transmission, fuelType, engineSize, and mpg to accurately predict the price of a car on the used market in the UK. As far as I can tell, the tax value comes from an outside factor and is unpredictable with the given data. 
