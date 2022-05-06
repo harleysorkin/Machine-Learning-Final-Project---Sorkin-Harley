@@ -25,29 +25,29 @@ df['avgPriceModel'] = df.groupby('model')['price'].transform('mean').round(2)
 df['avgMpgModel'] = df.groupby('model')['mpg'].transform('mean').round(1)
 df
 
-# # pairplot of the dataframe, colored by Make
-# sns.pairplot(df, hue = 'Make')
+# pairplot of the dataframe, colored by Make
+sns.pairplot(df, hue = 'Make')
 
-# # barplot representing Make vs price
-# sns.barplot(x = 'Make', y = 'price', data = df)
+# barplot representing Make vs price
+sns.barplot(x = 'Make', y = 'price', data = df)
 
-# # lmplot of year vs price, separated by Make and colored by transmission type
-# sns.lmplot(x = 'year', y = 'price', data = df, col = 'Make', hue = 'transmission', truncate = False, height = 5, col_wrap = 2)
+# lmplot of year vs price, separated by Make and colored by transmission type
+sns.lmplot(x = 'year', y = 'price', data = df, col = 'Make', hue = 'transmission', truncate = False, height = 5, col_wrap = 2)
 
-# # Flatter regression lines indicate more stable resale value of the car the older it is, whereas steeper slopes indicate higher loss in value the older the car.
+# Flatter regression lines indicate more stable resale value of the car the older it is, whereas steeper slopes indicate higher loss in value the older the car.
 
-# # lmplot of mileage vs price, separated by Make
-# sns.lmplot(x = 'mileage', y = 'price', data = df, col = 'Make', hue = 'Make', truncate = False, col_wrap = 2, height = 5, aspect = 0.75)
+# lmplot of mileage vs price, separated by Make
+sns.lmplot(x = 'mileage', y = 'price', data = df, col = 'Make', hue = 'Make', truncate = False, col_wrap = 2, height = 5, aspect = 0.75)
 
-# # The flatter the regression line, the more value a car will hold despite higher mileage.
+# The flatter the regression line, the more value a car will hold despite higher mileage.
 
-# # lmplot of avgPrice (of each model) vs avgMpg (of each model)
-# sns.lmplot(data = df, x = 'avgPriceModel', y = 'avgMpgModel', hue = 'Make', truncate = False)
+# lmplot of avgPrice (of each model) vs avgMpg (of each model)
+sns.lmplot(data = df, x = 'avgPriceModel', y = 'avgMpgModel', hue = 'Make', truncate = False)
 
-# # Negative regression shows average mpg goes down as the average price goes up.
+# Negative regression shows average mpg goes down as the average price goes up.
 
-# # Data distribution plot of price
-# sns.displot(data = df, x = 'price')
+# Data distribution plot of price
+sns.displot(data = df, x = 'price')
 
 # Drop unhelpful columns
 df = df.drop(['tax'], axis = 1)
@@ -84,8 +84,8 @@ scaler.fit(df)
 scaler.transform(df)
 
 # Randomly sample rows from df for train and the remaining rows are left for test
-train = df.sample(frac = 0.1, replace = False)
-test = df.sample(frac = 0.9, replace = False)
+train = df.sample(frac = 0.9, replace = False)
+test = df.sample(frac = 0.1, replace = False)
 
 # Create list of column names
 a = list(df.columns)
