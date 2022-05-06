@@ -30,6 +30,12 @@ I also looked at avgPrice vs avgMpg.
 
 This data shows that as the price of a model rises, typically the mpg drops. This is helpful for beginning to understand what factors affect price.
 
-## Plans for part 2
+## Data Prep
 
-My plan is to find a model relating make, model, year, mileage, transmission, fuelType, engineSize, and mpg to accurately predict the price of a car on the used market in the UK. As far as I can tell, the tax value comes from an outside factor and is unpredictable with the given data. 
+I removed the 'tax' column as it had no correlation to the rest of the data. Then I used Lable Encoding to encode the 'model', 'transmission', 'fuelType', and 'Make' columns. OneHotEncoding gave issues with the regression models when used on make and model.
+
+I also added the columns 'avgPriceMake', 'maxPriceMake', and 'maxPriceModel'.
+
+## Linear Regression and SGD Regression scores
+
+My linear regression scores yielded around 85% accuracy when training on 90% of randomly sampled data with little variation when the training sample was reduced. The SGD regressor, on the other hand, could not find a model to fit the data no matter how much training was done.
