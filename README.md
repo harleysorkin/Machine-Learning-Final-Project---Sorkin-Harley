@@ -39,3 +39,5 @@ I also added the columns 'avgPriceMake', 'maxPriceMake', and 'maxPriceModel'.
 ## Linear Regression and SGD Regression scores
 
 My linear regression scores yielded around 85% accuracy when training on 90% of randomly sampled data with little variation when the training sample was reduced. The SGD regressor, on the other hand, could not find a model to fit the data no matter how much training was done.
+
+Based on the results of fitting this data to the model, I believe I could predict a used, modern car's price (from one of the 7 included makes) in the United Kingdom to around 85% accuracy given a few key details such as make, model, year, mileage, transmission type, fuel type, fuel mileage, and engine size.
